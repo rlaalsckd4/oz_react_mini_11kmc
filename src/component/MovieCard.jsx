@@ -5,8 +5,7 @@ export default function MovieCard({ title, poster_path, vote_average }) {
     const navigate = useNavigate()
 
     return (
-        <div className="movie-card"
-            onClick={() => navigate("/details")}>
+        <div onClick={() => navigate("/details")}>
             <img src={`${baseUrl}${poster_path}`} alt={title} />
             <h3>{title}</h3>
             <p>평점: {vote_average}</p>

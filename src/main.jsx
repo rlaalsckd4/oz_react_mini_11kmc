@@ -1,17 +1,10 @@
-import { createRoot } from 'react-dom/client'
-import './index.css'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import MovieDetail from './component/MovieDetail.jsx'
-import Layout from './component/Layout.jsx'
+import './index.css'
 
-createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
-    <Routes>
-      <Route path='/' element={<Layout />}>
-        <Route path='/' element={<App />} />
-        <Route path='/details' element={<MovieDetail />} />
-      </Route>
-    </Routes>
-  </BrowserRouter>,
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
 )
