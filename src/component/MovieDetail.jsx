@@ -27,6 +27,8 @@ export default function MovieDetail() {
             .catch(err => console.error(err));
     }, [id])
 
+    if (!movie) return (<div className="text-white text-center"> 로딩 중... </div>)
+
     return (
         <div className="max-w-5xl mx-auto px-4 py-6">
 
