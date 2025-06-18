@@ -4,11 +4,32 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { useNavigate } from "react-router-dom";
+import apiToken from "../../CallToken";
+import { useEffect, useState } from "react";
 
 const baseUrl = "https://image.tmdb.org/t/p/w500";
 
 export default function MovieSlider() {
+    const [movies, setMovies] = useState([])
     const navigate = useNavigate()
+
+    const options = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: `Bearer ${apiToken}`
+        }
+    };
+
+    useEffect(() => {
+        fetch('https://api.themoviedb.org/3/movie/popular', options)
+            .then(res => res.json())
+            .then(res => {
+                const childMovies = res.results.filter((movie) => movie.adult === false)
+                setMovies(childMovies)
+            })
+            .catch(err => console.error(err));
+    }, [])
 
     return (
         <div className="w-full bg-black py-6">
@@ -26,10 +47,10 @@ export default function MovieSlider() {
                         1024: { slidesPerView: 3 },
                     }}
                 >
-                    {movieData.results.map((movie) => (
-                        <SwiperSlide 
-                        key={movie.id}
-                        onClick={() => navigate("/details")}>
+                    {movies.map((movie) => (
+                        <SwiperSlide
+                            key={movie.id}
+                            onClick={() => navigate(`/details/${movie.id}`)}>
                             <img
                                 src={`${baseUrl}${movie.poster_path}`}
                                 alt={movie.title}
