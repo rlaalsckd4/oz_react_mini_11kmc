@@ -6,6 +6,7 @@ export default function MovieDetail() {
     const baseUrl = "https://image.tmdb.org/t/p/w500";
     const { id } = useParams()
     const [movie, setMovie] = useState([]);
+    const [isLoading, setIsLoading] = useState(true)
 
     const options = {
         method: 'GET',
@@ -23,9 +24,23 @@ export default function MovieDetail() {
             },
         })
             .then(res => res.json())
-            .then(data => setMovie(data))
-            .catch(err => console.error(err));
+            .then(data => {
+                setMovie(data)
+                setIsLoading(false)
+            })
+            .catch(err => {
+                console.error(err)
+                setIsLoading(false)
+            });
     }, [id])
+
+    if (isLoading) {
+        return (
+            <div className="flex justify-center items-center h-96 text-white">
+                <div className="w-10 h-10 border-4 border-white border-t-transparent rounded-full animate-spin" />
+            </div>
+        )
+    }
 
     if (!movie) return (<div className="text-white text-center"> 로딩 중... </div>)
 
@@ -53,7 +68,7 @@ export default function MovieDetail() {
                     <div>
                         <strong>장르:</strong>{" "}
                         {movie.genres?.map((genre) => (
-                            <span key={genre.id} className="inline-block mr-2 mb-2 px-3 py-1 bg-gray-200 rounded-full text-sm">
+                            <span key={genre.id} className="inline-block mr-2 mb-2 px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-sm">
                                 {genre.name}
                             </span>
                         ))}
