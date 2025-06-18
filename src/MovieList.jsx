@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import movieData from "./movieListData.json"
 import MovieCard from "./component/MovieCard";
 import MovieSlider from "./component/MovieSlider";
 import apiToken from "../CallToken";
 
 
 export default function App() {
-    const [movies, setMovies] = useState(movieData.results);
+    const [movies, setMovies] = useState([]);
 
     const options = {
         method: 'GET',
