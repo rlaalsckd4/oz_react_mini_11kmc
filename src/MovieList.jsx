@@ -28,7 +28,6 @@ export default function App() {
                 if (err) return( <div className="text-white">데이터를 불러오지 못 했습니다...</div>)
                 setIsLoading(false)
             });
-
     }, [])
 
     return (
