@@ -10,7 +10,7 @@ export default function App() {
       <Routes>
         <Route path='/' element={<Layout />}>
           <Route index element={<MovieList />} />
-          <Route path='/details' element={<MovieDetail />} />
+          <Route path='/details/:id' element={<MovieDetail />} />
         </Route>
       </Routes>
     </BrowserRouter>
