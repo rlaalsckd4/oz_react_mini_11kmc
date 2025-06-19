@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import apiToken from "../../CallToken";
 
-export default function useEffect() {
+export default function useMovies() {
     const [movies, setMovies] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(null)
@@ -15,7 +15,7 @@ export default function useEffect() {
             }
         }
 
-        fetch(apiUrl, options)
+        fetch("https://api.themoviedb.org/3/movie/popular", options)
             .then(res => res.json())
             .then(data => {
                 const filtered = data.results
@@ -28,7 +28,7 @@ export default function useEffect() {
                 setError(err)
                 setIsLoading(false)
             })
-    }, [apiUrl])
+    }, [])
 
     return { movies, isLoading, error }
 }
