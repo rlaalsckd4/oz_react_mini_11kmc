@@ -11,7 +11,7 @@ export default function useMovies() {
             method: 'GET',
             headers: {
                 accept: 'application/json',
-                Authorization: `Bearer${apiToken}`
+                Authorization: `Bearer ${apiToken}`
             }
         }
 
@@ -21,7 +21,7 @@ export default function useMovies() {
                 const filtered = data.results
                     ? data.results.filter(movie => movie.adult === false)
                     : []
-                setMovies(filtered.length ? filtered : [data])
+                setMovies(filtered)
                 setIsLoading(false)
             })
             .catch(err => {

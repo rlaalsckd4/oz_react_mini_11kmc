@@ -3,32 +3,10 @@ import MovieCard from "./component/MovieCard";
 import MovieSlider from "./component/MovieSlider";
 import apiToken from "../CallToken";
 import SkeletonCard from "./component/SkeletonCard";
+import useMovies from "./hooks/useMovies";
 
 export default function App() {
-    const [movies, setMovies] = useState([]);
-    const [isLoading, setIsLoading] = useState(true)
-
-    const options = {
-        method: 'GET',
-        headers: {
-            accept: 'application/json',
-            Authorization: `Bearer ${apiToken}`
-        }
-    };
-
-    useEffect(() => {
-        fetch('https://api.themoviedb.org/3/movie/popular', options)
-            .then(res => res.json())
-            .then(res => {
-                const childMovies = res.results.filter((movie) => movie.adult === false)
-                setMovies(childMovies)
-                setIsLoading(false)
-            })
-            .catch(err => {
-                if (err) return( <div className="text-white">데이터를 불러오지 못 했습니다...</div>)
-                setIsLoading(false)
-            });
-    }, [])
+    const { movies, isLoading } = useMovies("https://api.themoviedb.org/3/movie/popular")
 
     return (
         <div className="w-full bg-black py-6 ">
