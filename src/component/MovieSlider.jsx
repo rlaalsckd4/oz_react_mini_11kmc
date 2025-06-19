@@ -16,7 +16,7 @@ export default function MovieSlider() {
     return (
         <div className="w-full bg-black py-6">
             <div className="max-w-6xl mx-auto px-4">
-                <h2 className="text-xl font-bold text-white mb-4">🍿오늘의 추천🍿</h2>
+                <h2 className="text-2xl font-bold text-white mb-4">🍿오늘의 추천🍿</h2>
 
                 <Swiper
                     modules={[Navigation]}

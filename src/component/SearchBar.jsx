@@ -17,6 +17,7 @@ export default function SearchBar() {
         const trimmed = debouncedInput.trim()
 
         if (trimmed) {
+
             navigate({
                 pathname: "/search",
                 search: createSearchParams({ query: trimmed }).toString(),
