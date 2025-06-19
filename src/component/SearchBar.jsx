@@ -25,7 +25,7 @@ export default function SearchBar() {
 
     return(
         <input type="text"
-        value={inputValue}
+        value={input}
         onChange={handleChange}
         placeholder="Search Here..."
         className="p-2 rounded border border-gray-400"/>

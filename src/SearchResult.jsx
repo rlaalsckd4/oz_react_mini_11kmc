@@ -1,12 +1,11 @@
-import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import apiToken from "../CallToken";
 import MovieCard from "./component/MovieCard";
+import useSearchMovies from "./hooks/useSearchMovies";
 
 export default function SearchResult() {
     const [searchParams] = useSearchParams()
     const query = searchParams.get("query")
-    const { results, isLoading, error } = useSearchParams(query)
+    const { results, isLoading, error } = useSearchMovies(query)
 
     return (
         <div className="max-w-6xl mx-auto px-4 py-6 text-white">
