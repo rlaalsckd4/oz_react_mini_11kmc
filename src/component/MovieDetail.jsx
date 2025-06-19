@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import apiToken from "../../CallToken";
 import useMovieDetail from "../hooks/useDetailMoive";
 
 export default function MovieDetail() {

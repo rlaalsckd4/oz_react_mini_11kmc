@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import apiToken from "../../CallToken";
+import { data } from "react-router-dom";
 
 export default function useSearchMovies(query) {
     const [results, setResults] = useState([])
@@ -10,7 +11,7 @@ export default function useSearchMovies(query) {
         if (!query) return
 
         setIsLoading(true)
-        fetch(`https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(query)}`, {
+        fetch(`https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(query)}&include_adult=false`, {
             method: "GET",
             headers: {
                 accept: "application/json",
@@ -19,8 +20,12 @@ export default function useSearchMovies(query) {
         })
             .then((res) => res.json())
             .then((data) => {
-                setResults(data.results || []);
-                setIsLoading(false);
+                const filtered = data.results
+                    ? data.results.filter(movie => movie.adult === false)
+                    : []
+                setResults(filtered)
+                setIsLoading(false)
+                console.log(data)
             })
             .catch((err) => {
                 setError(err);
