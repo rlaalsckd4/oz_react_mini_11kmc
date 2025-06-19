@@ -1,38 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import apiToken from "../../CallToken";
+import useMovieDetail from "../hooks/useDetailMoive";
 
 export default function MovieDetail() {
     const baseUrl = "https://image.tmdb.org/t/p/w500";
     const { id } = useParams()
-    const [movie, setMovie] = useState([]);
-    const [isLoading, setIsLoading] = useState(true)
-
-    const options = {
-        method: 'GET',
-        headers: {
-            accept: 'application/json',
-            Authorization: `Bearer ${apiToken}`
-        }
-    };
-
-    useEffect(() => {
-        fetch(`https://api.themoviedb.org/3/movie/${id}`, {
-            headers: {
-                accept: 'application/json',
-                Authorization: `Bearer ${apiToken}`,
-            },
-        })
-            .then(res => res.json())
-            .then(data => {
-                setMovie(data)
-                setIsLoading(false)
-            })
-            .catch(err => {
-                console.error(err)
-                setIsLoading(false)
-            });
-    }, [id])
+    const { movie, isLoading } = useMovieDetail(`https://api.themoviedb.org/3/movie/${id}`)
 
     if (isLoading) {
         return (
