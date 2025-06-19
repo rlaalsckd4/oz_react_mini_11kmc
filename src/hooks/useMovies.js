@@ -15,7 +15,7 @@ export default function useMovies() {
             }
         }
 
-        fetch("https://api.themoviedb.org/3/movie/popular", options)
+        fetch("https://api.themoviedb.org/3/movie/popular?language=ko-KR", options)
             .then(res => res.json())
             .then(data => {
                 const filtered = data.results
