@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react";
 import MovieCard from "./component/MovieCard";
 import MovieSlider from "./component/MovieSlider";
-import apiToken from "../CallToken";
 import SkeletonCard from "./component/SkeletonCard";
 import useMovies from "./hooks/useMovies";
 
