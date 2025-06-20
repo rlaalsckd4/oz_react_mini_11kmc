@@ -24,6 +24,7 @@ export default function MovieSlider() {
                     slidesPerView={3}
                     navigation
                     breakpoints={{
+                        350: { slidesPerView: 1 },
                         640: { slidesPerView: 2 },
                         768: { slidesPerView: 2 },
                         1024: { slidesPerView: 3 },

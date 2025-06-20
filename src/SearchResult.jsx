@@ -7,7 +7,6 @@ export default function SearchResult() {
     const [searchParams] = useSearchParams()
     const query = searchParams.get("query")
     const { results, isLoading, error } = useSearchMovies(query)
-console.log(results)
     return (
         <div className="max-w-6xl mx-auto px-4 py-6 text-white">
             <h2 className="text-2xl mb-4 font-bold">검색결과: {query}</h2>
