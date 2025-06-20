@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
 import useMovieDetail from "../hooks/useDetailMovie";
 import RatingBar from "./RatingBar";
+import { baseUrl } from "../constant/constant";
 
 export default function MovieDetail() {
-  const baseUrl = "https://image.tmdb.org/t/p/w500";
   const { id } = useParams();
   const { movie, isLoading, error } = useMovieDetail(id);
 

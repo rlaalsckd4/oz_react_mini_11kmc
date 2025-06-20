@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import apiToken from "../../CallToken";
+import { movieUrl } from "../constant/constant";
 
 export default function useMovieDetail(id) {
   const [movie, setMovie] = useState(null);
@@ -9,7 +10,7 @@ export default function useMovieDetail(id) {
   useEffect(() => {
     if (!id) return;
 
-    const url = `https://api.themoviedb.org/3/movie/${id}?language=ko-KR`;
+    const url = `${movieUrl}/${id}?language=ko-KR`;
 
     fetch(url, {
       method: "GET",

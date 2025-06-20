@@ -5,14 +5,11 @@ import "swiper/css/navigation";
 import { useNavigate } from "react-router-dom";
 import SkeletonCard from "./SkeletonCard";
 import useMovies from "../hooks/useMovies";
-
-const baseUrl = "https://image.tmdb.org/t/p/w500";
+import { baseUrl, movieUrl } from "../constant/constant";
 
 export default function MovieSlider() {
   const navigate = useNavigate();
-  const { movies, isLoading } = useMovies(
-    "https://api.themoviedb.org/3/movie/popular"
-  );
+  const { movies, isLoading } = useMovies(`${movieUrl}/popular`);
 
   return (
     <div className="w-full bg-black py-6">

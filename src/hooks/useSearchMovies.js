@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import apiToken from "../../CallToken";
 import { data } from "react-router-dom";
+import { movieUrl } from "../constant/constant";
 
 export default function useSearchMovies(query) {
   const [results, setResults] = useState([]);
@@ -12,7 +13,7 @@ export default function useSearchMovies(query) {
 
     setIsLoading(true);
     fetch(
-      `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(
+      `${movieUrl}/search/movie?query=${encodeURIComponent(
         query
       )}&include_adult=false&language=ko-KR`,
       {
