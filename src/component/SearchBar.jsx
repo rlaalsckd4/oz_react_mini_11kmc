@@ -13,6 +13,7 @@ export default function SearchBar() {
     setInput(e.target.value);
   };
 
+  //돋보기 클릭 시 작동 코드
   const handleToggle = () => {
     setIsOpen((prev) => !prev);
   };

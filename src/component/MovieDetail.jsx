@@ -1,13 +1,11 @@
 import { useParams } from "react-router-dom";
-import useMovieDetail from "../hooks/useDetailMoive";
+import useMovieDetail from "../hooks/useDetailMovie";
 import RatingBar from "./RatingBar";
 
 export default function MovieDetail() {
   const baseUrl = "https://image.tmdb.org/t/p/w500";
   const { id } = useParams();
-  const { movie, isLoading } = useMovieDetail(
-    `https://api.themoviedb.org/3/movie/${id}?language=ko-KR`
-  );
+  const { movie, isLoading, error } = useMovieDetail(id);
 
   if (isLoading) {
     return (
@@ -28,7 +26,7 @@ export default function MovieDetail() {
           <img
             src={`${baseUrl}${movie.poster_path}`}
             alt={movie.title}
-            style={{ width: "100%", borderRadius: "10px", objectFit: "cover" }}
+            className="w-full rounded-lg object-cover"
           />
         </div>
 
