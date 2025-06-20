@@ -31,6 +31,7 @@ export default function useSearchMovies(query) {
           : [];
         setResults(filtered);
         setIsLoading(false);
+        console.log(data);
       })
       .catch((err) => {
         setError(err);

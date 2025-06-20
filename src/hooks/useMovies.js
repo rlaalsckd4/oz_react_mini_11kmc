@@ -16,7 +16,7 @@ export default function useMovies() {
       },
     };
 
-    fetch(`${movieUrl}/popular?language=ko-KR`, options)
+    fetch(`${movieUrl}/movie/popular?language=ko-KR`, options)
       .then((res) => res.json())
       .then((data) => {
         const filtered = data.results

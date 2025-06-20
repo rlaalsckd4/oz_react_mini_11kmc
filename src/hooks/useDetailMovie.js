@@ -10,7 +10,7 @@ export default function useMovieDetail(id) {
   useEffect(() => {
     if (!id) return;
 
-    const url = `${movieUrl}/${id}?language=ko-KR`;
+    const url = `${movieUrl}/movie/${id}?language=ko-KR`;
 
     fetch(url, {
       method: "GET",
