@@ -8,6 +8,7 @@ export default function NavBar({ onSearch }) {
         MovieApp
       </Link>
       <SearchBar onSearch={onSearch} />
+      <Link to="/login">로그인</Link>
     </nav>
   );
 }
