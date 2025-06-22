@@ -1,4 +1,4 @@
-import { createClient, SupabaseClient } from "@supabase/supabase-js";
+import { supabase } from "../hooks/supabase";
 import { useState } from "react";
 import FormInput from "../component/FormInput";
 
@@ -33,7 +33,7 @@ export default function Signup() {
     const foundErrors = validate();
     setErrors(foundErrors);
     if (Object.keys(foundErrors).length === 0) {
-      const { error } = await SupabaseClient.auth.signUp({
+      const { error } = await supabase.auth.signUp({
         email: form.email,
         password: form.password,
         options: {

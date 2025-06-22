@@ -1,10 +1,11 @@
-// 📁 src/pages/Login.jsx
 import { useState } from "react";
 import FormInput from "../component/FormInput";
-import { SupabaseClient } from "@supabase/supabase-js";
+import { supabase } from "../hooks/supabase";
+import { useNavigate } from "react-router-dom";
 export default function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   const validate = () => {
     const newErrors = {};
@@ -22,7 +23,7 @@ export default function Login() {
     const foundErrors = validate();
     setErrors(foundErrors);
     if (Object.keys(foundErrors).length === 0) {
-      const { error } = await SupabaseClient.auth.signInWithPassword({
+      const { error } = await supabase.auth.signInWithPassword({
         email: form.email,
         password: form.password,
       });
@@ -30,6 +31,7 @@ export default function Login() {
         alert(`로그인 실패: ${error.message}`);
       } else {
         alert("로그인 완료!");
+        navigate("/");
       }
     }
   };

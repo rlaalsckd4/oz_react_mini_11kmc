@@ -1,15 +1,72 @@
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
+import { useEffect, useState } from "react";
+import { supabase } from "../hooks/supabase";
 
 export default function NavBar({ onSearch }) {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => setDropdownOpen((prev) => !prev);
+
+  const handleLogout = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      console.error("로그아웃 실패:", error.message);
+      return;
+    }
+    console.log("로그아웃 됨");
+    setIsLoggedIn(false);
+    setDropdownOpen(false);
+  };
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setIsLoggedIn(!!session);
+    });
+
+    const { data: listener } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setIsLoggedIn(!!session);
+      }
+    );
+
+    return () => {
+      listener.subscription.unsubscribe();
+    };
+  }, []);
   return (
     <nav className="bg-gray-600 text-white px-5 py-4 flex justify-between items-center shadow-md  w-full z-10 top-0">
       <Link to="/" className="text-xl font-bold">
         MovieApp
       </Link>
       <SearchBar onSearch={onSearch} />
-      <Link to="/login">로그인</Link>
-      <Link to="/signup">회원 가입</Link>
+      {!isLoggedIn ? (
+        <>
+          <Link to="/login">로그인</Link>
+          <Link to="/signup">회원 가입</Link>
+        </>
+      ) : (
+        <div className="relative">
+          <button
+            onClick={toggleDropdown}
+            className="w-8 h-8 rounded-full bg-purple-500 text-white flex items-center justify-center"
+          >
+            👤
+          </button>
+
+          {dropdownOpen && (
+            <div className="absolute right-0 mt-2 w-32 bg-gray-900 text-white rounded shadow-lg z-10">
+              <button
+                onClick={handleLogout}
+                className="w-full text-left px-4 py-2 hover:bg-gray-700"
+              >
+                로그아웃
+              </button>
+            </div>
+          )}
+        </div>
+      )}
     </nav>
   );
 }
