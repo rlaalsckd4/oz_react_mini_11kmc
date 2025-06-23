@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import { useEffect, useState } from "react";
 import { supabase } from "../hooks/supabase";
@@ -6,6 +6,7 @@ import { supabase } from "../hooks/supabase";
 export default function NavBar({ onSearch }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleDropdown = () => setDropdownOpen((prev) => !prev);
 
@@ -68,6 +69,12 @@ export default function NavBar({ onSearch }) {
                     className="w-full text-left px-4 py-2 hover:bg-gray-700"
                   >
                     로그아웃
+                  </button>
+                  <button
+                    onClick={() => navigate("/mypage")}
+                    className="w-full text-left px-4 py-2 hover:bg-gray-700"
+                  >
+                    마이페이지
                   </button>
                 </div>
               )}
