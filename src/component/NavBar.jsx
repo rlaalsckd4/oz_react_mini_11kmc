@@ -71,7 +71,9 @@ export default function NavBar({ onSearch }) {
                     로그아웃
                   </button>
                   <button
-                    onClick={() => navigate("/mypage")}
+                    onClick={() => {
+                      setDropdownOpen(false), navigate("/mypage");
+                    }}
                     className="w-full text-left px-4 py-2 hover:bg-gray-700"
                   >
                     마이페이지
