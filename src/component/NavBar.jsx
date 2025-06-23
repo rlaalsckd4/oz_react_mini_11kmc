@@ -35,38 +35,46 @@ export default function NavBar({ onSearch }) {
       listener.subscription.unsubscribe();
     };
   }, []);
-  return (
-    <nav className="bg-gray-600 text-white px-5 py-4 flex justify-between items-center shadow-md  w-full z-10 top-0">
-      <Link to="/" className="text-xl font-bold">
-        MovieApp
-      </Link>
-      <SearchBar onSearch={onSearch} />
-      {!isLoggedIn ? (
-        <>
-          <Link to="/login">로그인</Link>
-          <Link to="/signup">회원 가입</Link>
-        </>
-      ) : (
-        <div className="relative">
-          <button
-            onClick={toggleDropdown}
-            className="w-8 h-8 rounded-full bg-purple-500 text-white flex items-center justify-center"
-          >
-            👤
-          </button>
 
-          {dropdownOpen && (
-            <div className="absolute right-0 mt-2 w-32 bg-gray-900 text-white rounded shadow-lg z-10">
+  return (
+    <nav className="bg-gray-600 text-white px-5 py-4 shadow-md flex items-center justify-between flex-wrap gap-2">
+      <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <Link to="/" className="text-xl font-bold whitespace-nowrap">
+            MovieApp
+          </Link>
+          <SearchBar onSearch={onSearch} />
+        </div>
+
+        <div className="flex items-center gap-4">
+          {!isLoggedIn ? (
+            <>
+              <Link to="/login">로그인</Link>
+              <Link to="/signup">회원 가입</Link>
+            </>
+          ) : (
+            <div className="relative">
               <button
-                onClick={handleLogout}
-                className="w-full text-left px-4 py-2 hover:bg-gray-700"
+                onClick={toggleDropdown}
+                className="w-8 h-8 rounded-full bg-purple-500 text-white flex items-center justify-center"
               >
-                로그아웃
+                👤
               </button>
+
+              {dropdownOpen && (
+                <div className="absolute right-0 mt-2 w-32 bg-gray-900 text-white rounded shadow-lg z-10">
+                  <button
+                    onClick={handleLogout}
+                    className="w-full text-left px-4 py-2 hover:bg-gray-700"
+                  >
+                    로그아웃
+                  </button>
+                </div>
+              )}
             </div>
           )}
         </div>
-      )}
+      </div>
     </nav>
   );
 }

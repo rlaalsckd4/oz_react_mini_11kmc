@@ -45,10 +45,10 @@ export default function SearchBar() {
   }, [debouncedInput]);
 
   return (
-    <div className="relative flex items-center">
+    <div className="relative flex flex-row-reverse items-center">
       <button
         onClick={handleToggle}
-        className="md:hidden p-2 rounded-full text-gray-600 dark:text-white hover:bg-gray-200 dark:hover:bg-gray700 transition"
+        className=" md:hidden p-2 rounded-full text-gray-600 dark:text-white hover:bg-gray-200 dark:hover:bg-gray700 transition"
         aria-label="검색 열기"
       >
         🔍
@@ -60,7 +60,6 @@ export default function SearchBar() {
         placeholder="Search Here..."
         className={`
           transition-all duration-300 ease-in-out
-          absolute right-0 top-0 md:static
           bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-sm text-black dark:text-white px-4 py-2 rounded-full
           ${isOpen ? "w-48 opacity-100 visible" : "w-0 opacity-0 invisible"}
           md:w-64 md:opacity-100 md:visible

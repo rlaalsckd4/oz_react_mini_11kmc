@@ -65,6 +65,7 @@ export default function Signup() {
         value={form.name}
         onChange={handleChange}
         error={errors.name}
+        placeholder="예: 홍길동"
       />
       <FormInput
         label="이메일"
@@ -72,6 +73,7 @@ export default function Signup() {
         value={form.email}
         onChange={handleChange}
         error={errors.email}
+        placeholder="example@example.com"
       />
       <FormInput
         label="비밀번호"
@@ -80,6 +82,7 @@ export default function Signup() {
         value={form.password}
         onChange={handleChange}
         error={errors.password}
+        placeholder="비밀번호 입력(문자, 숫자, 특수문자 포함 6~20자)"
       />
       <FormInput
         label="비밀번호 확인"
@@ -88,6 +91,7 @@ export default function Signup() {
         value={form.confirmPassword}
         onChange={handleChange}
         error={errors.confirmPassword}
+        placeholder="비밀번호 재입력"
       />
       <button
         type="submit"
