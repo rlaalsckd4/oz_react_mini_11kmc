@@ -7,6 +7,8 @@ import SearchResult from "./SearchResult.jsx";
 import { useState } from "react";
 import Signup from "./pages/SingUp.jsx";
 import Login from "./pages/Login.jsx";
+import PrivateRoute from "./component/PrivateRoute.jsx";
+import MyPage from "./pages/MyPage.jsx";
 
 export default function App() {
   const [query, setQuery] = useState("");
@@ -16,6 +18,14 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/signup" element={<Signup />} />
+          <Route
+            path="/mypage"
+            element={
+              <PrivateRoute>
+                <MyPage />
+              </PrivateRoute>
+            }
+          />
           <Route path="/login" element={<Login />} />
           <Route index element={<MovieList />} />
           <Route path="/details/:id" element={<MovieDetail />} />
